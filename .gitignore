@@ -1,0 +1,5 @@
+*.pyc
+/data/*
+/result/*s
+/log
+.ds_store
