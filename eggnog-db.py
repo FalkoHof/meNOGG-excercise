@@ -7,7 +7,7 @@ from collections import defaultdict
 from lib.functional_group import Functional_group
 
 #description to be displayed in the command line
-desc = ("Project from Max Keller.")
+desc = ("Project from Max Kellner.")
 #initilze command line argument parser
 parser = argparse.ArgumentParser(description = desc)
 #add arguments to the ArgumentParser
