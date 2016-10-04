@@ -31,12 +31,18 @@ cd $base_dir
 if [ ! -d "$data_dir" ]; then
   echo 'Data directory is not in the expected place.'
   echo 'Are you using simulinks? If so, please specify the path manually by editing the variable base_dir in this script.'
+#if dir found, get zipped files and unzip
 else
   echo 'Data directory found...'
-  f=($(ls $data_dir | grep -e ".gz.*"))
+  #pipe ls output into grep...
+  f=($(ls $data_dir | grep -e ".gz"))
+  #if zipped files there unzip (if length of array > 0 (more than 0 files)
   if [[ "${#f[@]}" -gt "0" ]]; then
     echo 'Unzipping files...'
-    gunzip -v ${f[@]}
+    cd $data_dir
+    #unzip the files
+    gunzip ${f[@]}
+    cd $base_dir
     echo 'Unzipping files... - Done'
   fi
 fi
