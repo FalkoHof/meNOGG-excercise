@@ -2,7 +2,6 @@
 #import libraries
 import os
 import argparse
-from argparse import RawTextHelpFormatter
 from collections import defaultdict
 from lib.functional_group import Functional_group
 
