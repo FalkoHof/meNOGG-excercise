@@ -2,9 +2,9 @@
 
 #get the current script directory. DOES not work with simulinks!
 #in the case simulinks are used pls specfiy folder by hand
-scrip_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #specfiy some paths...
-base_dir=$(dirname $scrip_dir)
+base_dir=$(dirname $script_dir)
 data_dir=$base_dir/data
 results_dir=$base_dir/results
 
@@ -30,7 +30,15 @@ cd $base_dir
 #check if the data folder is there...
 if [ ! -d "$data_dir" ]; then
   echo 'Data directory is not in the expected place.'
-  echo 'Are you using simulinks? If so, please specify the path in this script.'
+  echo 'Are you using simulinks? If so, please specify the path manually by editing the variable base_dir in this script.'
+else
+  echo 'Data directory found...'
+  f=($(ls $data_dir | grep -e ".gz.*"))
+  if [[ "${#f[@]}" -gt "0" ]]; then
+    echo 'Unzipping files...'
+    gunzip -v ${f[@]}
+    echo 'Unzipping files... - Done'
+  fi
 fi
 #check if the resuts dir exist, if not make it
 if [ ! -d "$results_dir" ]; then
